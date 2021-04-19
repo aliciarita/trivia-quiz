@@ -1,0 +1,1 @@
+// aqui estará definido o esquema de um quiz do banco de dados
