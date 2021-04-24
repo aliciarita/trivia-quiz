@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt'
 
 const Schema = mongoose.Schema;
 
+/* Aqui está definido o esquema que define um usuário
+  na base de dados MongoDB */
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -22,6 +24,8 @@ const UserSchema = new Schema({
   }
 });
 
+/* Função que criptografa a senha do usuário quando ela é 
+  criada ou modificada */
 UserSchema.pre('save', (next) => {
   let user = this;
 
@@ -31,6 +35,10 @@ UserSchema.pre('save', (next) => {
   // Sobrescreve a senha com o valor da senha após hash
   user.password = bcrypt.hashSync(user.password, 10);
   next();
-})
+});
 
-UserSchema.plugin(mongooseUniqueValidator, {message: 'já existe'})
+UserSchema.plugin(mongooseUniqueValidator, {message: 'já existe'});
+
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User;
