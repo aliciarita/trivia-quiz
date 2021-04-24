@@ -17,7 +17,7 @@ const CONNECTION_URL = 'mongodb+srv://admin:admin123@trivia-quiz.ymdco.mongodb.n
 const PORT = process.env.PORT || 5000;
 
 // Conecta ao mongodb 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
   .catch((error) => console.log(error.message));
 
